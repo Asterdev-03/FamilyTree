@@ -1,0 +1,76 @@
+.family-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.tree-node {
+  position: relative;
+  margin: 10px;
+  text-align: center;
+}
+
+.tree-children {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+.tree-children::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  border-top: 1px solid #000;
+  width: calc(100% - 20px);
+  height: 20px;
+}
+
+.tree-children > .tree-node::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  border-left: 1px solid #000;
+  height: 20px;
+}
+
+.family-member {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  width: 150px;
+}
+
+.family-member__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.family-member__name {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.react-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.react-modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 4px;
+  outline: none;
+}
