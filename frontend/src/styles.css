@@ -22,7 +22,7 @@
   content: '';
   position: absolute;
   top: -20px;
-  left: 50%;
+  left: 2%;
   border-top: 1px solid #000;
   width: calc(100% - 20px);
   height: 20px;
