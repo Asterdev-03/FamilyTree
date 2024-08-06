@@ -6,16 +6,9 @@ const initialData = {
   members: {
     "member-1": {
       id: "member-1",
-      name: "John Doe",
-      children: ["member-2"],
-      parents: [],
-      siblings: [],
-    },
-    "member-2": {
-      id: "member-2",
-      name: "Jane Doe",
+      name: "New Member",
       children: [],
-      parents: ["member-1"],
+      parents: [],
       siblings: [],
     },
   },
@@ -29,6 +22,7 @@ const FamilyTree = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentMemberId, setCurrentMemberId] = useState(null);
   const [relationType, setRelationType] = useState("");
+  const [newMemberName, setNewMemberName] = useState("");
 
   const openModal = (memberId) => {
     setCurrentMemberId(memberId);
@@ -38,15 +32,16 @@ const FamilyTree = () => {
   const closeModal = () => {
     setModalIsOpen(false);
     setRelationType("");
+    setNewMemberName("");
   };
 
   const handleAddMember = () => {
-    if (!relationType) return;
+    if (!relationType || !newMemberName) return;
 
     const newId = `member-${Object.keys(data.members).length + 1}`;
     const newMember = {
       id: newId,
-      name: "New Member",
+      name: newMemberName,
       children: [],
       parents: [],
       siblings: [],
@@ -124,6 +119,21 @@ const FamilyTree = () => {
     });
   };
 
+  const handleEditMember = (memberId, newName) => {
+    const updatedMembers = {
+      ...data.members,
+      [memberId]: {
+        ...data.members[memberId],
+        name: newName,
+      },
+    };
+
+    setData({
+      ...data,
+      members: updatedMembers,
+    });
+  };
+
   const renderTree = (memberId) => {
     const member = data.members[memberId];
     return (
@@ -132,6 +142,7 @@ const FamilyTree = () => {
           member={member}
           onAdd={() => openModal(member.id)}
           onDelete={() => handleDeleteMember(member.id)}
+          onEdit={(newName) => handleEditMember(member.id, newName)}
         />
         {member.children.length > 0 && (
           <div className="tree-children">
@@ -154,6 +165,12 @@ const FamilyTree = () => {
         <button onClick={() => setRelationType("children")}>Child</button>
         <button onClick={() => setRelationType("parents")}>Parent</button>
         <button onClick={() => setRelationType("siblings")}>Sibling</button>
+        <input
+          type="text"
+          placeholder="Enter member name"
+          value={newMemberName}
+          onChange={(e) => setNewMemberName(e.target.value)}
+        />
         <button onClick={handleAddMember}>Confirm</button>
         <button onClick={closeModal}>Close</button>
       </Modal>
