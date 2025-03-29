@@ -54,22 +54,21 @@
   margin-bottom: 10px;
 }
 
-.react-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.75);
+button {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  cursor: pointer;
+  margin: 2px;
+  transition: background-color 0.3s;
 }
 
-.react-modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 20px;
-  border-radius: 4px;
-  outline: none;
+button:disabled {
+  background: #e0e0e0;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #f0f0f0;
 }

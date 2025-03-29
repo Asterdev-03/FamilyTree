@@ -156,6 +156,15 @@ const FamilyTree = () => {
     );
   };
 
+  const buttonStyle = (type) => ({
+    backgroundColor: relationType === type ? "#d3d3d3" : "transparent",
+    border: "1px solid #ccc",
+    borderRadius: "4px",
+    padding: "10px",
+    cursor: "pointer",
+    margin: "5px",
+  });
+
   return (
     <div className="family-tree">
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
@@ -165,17 +174,42 @@ const FamilyTree = () => {
         onRequestClose={closeModal}
         contentLabel="Add Member"
       >
-        <h2>Select Relation Type</h2>
-        <button onClick={() => setRelationType("children")}>Child</button>
-        <button onClick={() => setRelationType("parents")}>Parent</button>
-        <button onClick={() => setRelationType("siblings")}>Sibling</button>
+        <h2>Add New Member</h2>
         <input
           type="text"
           placeholder="Enter member name"
           value={newMemberName}
           onChange={(e) => setNewMemberName(e.target.value)}
         />
-        <button onClick={handleAddMember}>Confirm</button>
+        <h3>Select Relation Type</h3>
+        <button
+          style={buttonStyle("children")}
+          onClick={() => setRelationType("children")}
+        >
+          Child
+        </button>
+        <button
+          style={buttonStyle("parents")}
+          onClick={() => setRelationType("parents")}
+        >
+          Parent
+        </button>
+        <button
+          style={buttonStyle("siblings")}
+          onClick={() => setRelationType("siblings")}
+        >
+          Sibling
+        </button>
+        <br />
+        <br />
+        <button
+          onClick={handleAddMember}
+          disabled={!newMemberName || !relationType}
+        >
+          Confirm
+        </button>
+        <br />
+        <br />
         <button onClick={closeModal}>Close</button>
       </Modal>
     </div>
