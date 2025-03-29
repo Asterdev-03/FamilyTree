@@ -18,17 +18,17 @@
 }
 
 .tree-children::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: -15px;
-  left: 2%;
+  top: -5px;
+  left: 20%;
   border-top: 1px solid #000;
   width: calc(100% - 20px);
   height: 20px;
 }
 
 .tree-children > .tree-node::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -20px;
   left: 50%;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FamilyMember from "./FamilyMember";
 import Modal from "react-modal";
 
+const rootId = "member-1"; // The root of the tree
 const initialData = {
   members: {
     "member-1": {
@@ -12,7 +13,6 @@ const initialData = {
       siblings: [],
     },
   },
-  rootId: "member-1", // The root of the tree
 };
 
 Modal.setAppElement("#root");
@@ -23,6 +23,9 @@ const FamilyTree = () => {
   const [currentMemberId, setCurrentMemberId] = useState(null);
   const [relationType, setRelationType] = useState("");
   const [newMemberName, setNewMemberName] = useState("");
+  const [currentTreeMembers, setCurrentTreeMembers] = useState(
+    new Set([rootId])
+  );
 
   const openModal = (memberId) => {
     setCurrentMemberId(memberId);
@@ -155,7 +158,8 @@ const FamilyTree = () => {
 
   return (
     <div className="family-tree">
-      {renderTree(data.rootId)}
+      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      {renderTree(rootId)}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}

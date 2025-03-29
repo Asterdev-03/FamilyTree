@@ -17,18 +17,17 @@ const FamilyMember = ({ member, onAdd, onDelete, onEdit }) => {
     <div className="family-member">
       <div className="family-member__info">
         {isEditing ? (
-          <input
-            type="text"
-            value={newName}
-            onChange={(e) => setNewName(e.target.value)}
-          />
-        ) : (
-          <div className="family-member__name">{member.name}</div>
-        )}
-        {isEditing ? (
-          <button onClick={handleSave}>Save</button>
+          <>
+            <input
+              type="text"
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+            />
+            <button onClick={handleSave}>Save</button>
+          </>
         ) : (
           <>
+            <div className="family-member__name">{member.name}</div>
             <button onClick={handleEdit}>Edit</button>
             <button onClick={onAdd}>Add</button>
             <button onClick={onDelete}>Delete</button>
